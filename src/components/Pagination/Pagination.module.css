@@ -1,0 +1,1 @@
+.root{display:flex;gap:20px}.root li{cursor:pointer;padding:10px}.root li.active{border:1px solid #000;border-radius:50%}
