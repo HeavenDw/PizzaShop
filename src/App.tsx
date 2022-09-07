@@ -5,13 +5,14 @@ import Header from './components/Header/Header';
 import CartPage from './pages/CartPage';
 import NotFound from './pages/NotFoundPage';
 import PizzaPage from './pages/PizzaPage';
+import styles from './scss/App.module.scss';
 
 function App() {
   return (
-    <div className="wrapper">
+    <div className={styles.wrapper}>
       <Header />
-      <div className="content">
-        <div className="container">
+      <div className={styles.content}>
+        <div className={styles.container}>
           <Routes>
             <Route path="/" element={<CatalogPage />} />
             <Route path="/cart" element={<CartPage />} />

@@ -9,18 +9,21 @@ type PaginationProps = {
 };
 
 const Pagination: FC<PaginationProps> = ({ currentPage, pageCount }) => {
+  console.log(pageCount);
+
   const pageList = Array.from(Array(pageCount).keys()).map((page) => page + 1);
   const dispatch = useAppDispatch();
 
   return (
     <ul className={styles.root}>
       <li
+        className={styles.prev}
         onClick={() => {
           if (currentPage - 1 > 0) {
             dispatch(setCurrentPage(currentPage - 1));
           }
         }}>
-        Prev
+        &laquo;
       </li>
       {pageList.map((pageNumber) => (
         <li
@@ -33,12 +36,13 @@ const Pagination: FC<PaginationProps> = ({ currentPage, pageCount }) => {
         </li>
       ))}
       <li
+        className={styles.next}
         onClick={() => {
           if (currentPage + 1 <= pageCount) {
             dispatch(setCurrentPage(currentPage + 1));
           }
         }}>
-        Next
+        &raquo;
       </li>
     </ul>
   );

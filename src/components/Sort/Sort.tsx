@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useAppSelector } from '../../hooks';
 import { setSortType } from '../../redux/slices/filterSlice';
 
+import styles from './Sort.module.scss';
+
 const Sort: FC = () => {
   const currentSort = useAppSelector((state) => state.filter.sortType);
   const dispatch = useDispatch();
@@ -32,8 +34,8 @@ const Sort: FC = () => {
   }, []);
 
   return (
-    <div ref={sortRef} className="sort">
-      <div className="sort__label">
+    <div ref={sortRef} className={styles.sort}>
+      <div className={styles.label}>
         <svg
           width="10"
           height="6"
@@ -45,16 +47,16 @@ const Sort: FC = () => {
             fill="#2C2C2C"
           />
         </svg>
-        <b>Сортировка по:</b>
+        <p>Сортировка по:</p>
         <span onClick={() => setOpen(!open)}>{currentSort.name}</span>
       </div>
       {open && (
-        <div className="sort__popup">
+        <div className={styles.popup}>
           <ul>
             {sortList.map((sort, i) => (
               <li
                 key={i}
-                className={sort.name === currentSort.name ? 'active' : ''}
+                className={sort.name === currentSort.name ? styles.active : ''}
                 onClick={() => selectSort(i)}>
                 {sort.name}
               </li>

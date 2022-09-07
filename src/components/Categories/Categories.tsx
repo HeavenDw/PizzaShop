@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setCategoryId } from '../../redux/slices/filterSlice';
 
+import styles from './Categories.module.scss';
+
 type CategoryItem = {
   id: number;
   name: string;
@@ -22,12 +24,12 @@ const Categories: FC = () => {
   ];
 
   return (
-    <div className="categories">
+    <div className={styles.categories}>
       <ul>
         {categoriesList.map((cat) => (
           <li
             key={cat.id}
-            className={activeCategory === cat.id ? 'active' : ''}
+            className={activeCategory === cat.id ? styles.active : ''}
             onClick={() => dispatch(setCategoryId(cat.id))}>
             {cat.name}
           </li>

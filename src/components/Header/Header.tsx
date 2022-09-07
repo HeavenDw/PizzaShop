@@ -5,6 +5,7 @@ import CartButton from '../CartButton/CartButton';
 
 import Logo from '../Logo/Logo';
 import Search from '../Search/Search';
+import styles from './Header.module.scss';
 
 const Header: FC = () => {
   const location = useLocation();
@@ -24,8 +25,8 @@ const Header: FC = () => {
   }, [items]);
 
   return (
-    <header className="header">
-      <div className="container">
+    <header className={styles.header}>
+      <div className={styles.container}>
         <Logo />
         {location.pathname === '/' && <Search />}
         <CartButton />

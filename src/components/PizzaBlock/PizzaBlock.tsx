@@ -5,6 +5,8 @@ import { ICartItem } from '../../@types/cartSliceTypes';
 import { useAppSelector } from '../../hooks';
 import { addItemToCart } from '../../redux/slices/cartSlice';
 
+import styles from './PizzaBlock.module.scss';
+
 type TypeItem = {
   id: number;
   name: string;
@@ -45,18 +47,18 @@ const PizzaBlock: FC<PizzaBlockProps> = ({ id, imageUrl, title, type, size, pric
   const count = cartItem ? cartItem.count : 0;
 
   return (
-    <div className="pizza-block">
+    <div className={styles.pizzaBlock}>
       <Link to={`/pizza/` + id}>
-        <img className="pizza-block__image" src={imageUrl} alt={title} />
-        <h4 className="pizza-block__title">{title}</h4>
+        <img className={styles.image} src={imageUrl} alt={title} />
+        <h4 className={styles.title}>{title}</h4>
       </Link>
-      <div className="pizza-block__selector">
+      <div className={styles.selector}>
         <div>{typesList[type].name} тесто</div>
         <div>Размер пиццы: {size} см.</div>
       </div>
-      <div className="pizza-block__bottom">
-        <div className="pizza-block__price">{price} ₽</div>
-        <button onClick={addToCart} className="button button--outline button--add">
+      <div className={styles.bottom}>
+        <div className={styles.price}>{price} ₽</div>
+        <button onClick={addToCart} className={styles.button}>
           <svg
             width="12"
             height="12"

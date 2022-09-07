@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 import { ICartItem } from '../../@types/cartSliceTypes';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 
+import styles from './Cart.module.scss';
+import emptyCartImg from '../../assets/img/empty-cart.png';
+
 const Cart: FC = () => {
   const { items, totalCount, totalPrice } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
@@ -13,11 +16,44 @@ const Cart: FC = () => {
     dispatch(clearCartItems());
   };
 
+  if (!items.length) {
+    return (
+      <div className={styles.emptyCart}>
+        <h2>
+          Корзина пустая <span>😕</span>
+        </h2>
+        <p>
+          Вероятней всего, вы не заказывали ещё пиццу. Для того, чтобы заказать пиццу, перейди на
+          главную страницу.
+        </p>
+        <img src={emptyCartImg} alt="" />
+        <Link to="/" className={`button button--outline button--add ${styles.backBtn}`}>
+          <svg
+            width="8"
+            height="14"
+            viewBox="0 0 8 14"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M7 13L1 6.93015L6.86175 1"
+              stroke="#D3D3D3"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+
+          <span>Вернуться назад</span>
+        </Link>
+      </div>
+    );
+  }
+
   return (
-    <div className="container container--cart">
-      <div className="cart">
-        <div className="cart__top">
-          <h2 className="content__title">
+    <div className={styles.container}>
+      <div className={styles.cart}>
+        <div className={styles.top}>
+          <h2 className={styles.title}>
             <svg
               width="18"
               height="18"
@@ -48,7 +84,7 @@ const Cart: FC = () => {
             </svg>
             Корзина
           </h2>
-          <button onClick={onClickClear} className="cart__clear">
+          <button onClick={onClickClear} className={styles.clear}>
             <svg
               width="20"
               height="20"
@@ -88,13 +124,13 @@ const Cart: FC = () => {
             <span>Очистить корзину</span>
           </button>
         </div>
-        <div className="content__items">
+        <div>
           {items.map((item: ICartItem) => (
             <CartItem key={item.id} {...item} />
           ))}
         </div>
-        <div className="cart__bottom">
-          <div className="cart__bottom-details">
+        <div className={styles.bottom}>
+          <div className={styles.details}>
             <span>
               Всего пицц: <b>{totalCount} шт.</b>
             </span>
@@ -102,8 +138,8 @@ const Cart: FC = () => {
               Сумма заказа: <b>{totalPrice} ₽</b>
             </span>
           </div>
-          <div className="cart__bottom-buttons">
-            <Link to="/" className="button button--outline button--add go-back-btn">
+          <div className={styles.buttons}>
+            <Link to="/" className={`button button--outline button--add ${styles.backBtn}`}>
               <svg
                 width="8"
                 height="14"
@@ -121,9 +157,9 @@ const Cart: FC = () => {
 
               <span>Вернуться назад</span>
             </Link>
-            <div className="button pay-btn">
+            <button className={`button ${styles.payBtn}`}>
               <span>Оплатить сейчас</span>
-            </div>
+            </button>
           </div>
         </div>
       </div>
