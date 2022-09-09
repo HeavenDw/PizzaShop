@@ -5,7 +5,12 @@ export interface IPizzaItemSlice {
 }
 
 export interface IPizzaItemSliceBlock {
+  id: string;
   imageUrl: string;
   title: string;
   price: number;
+  type: number;
+  size: number;
+  category: number;
+  rating: number;
 }

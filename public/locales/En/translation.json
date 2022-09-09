@@ -29,5 +29,6 @@
   "orderPrice": "Order price",
   "backButton": "Go back",
   "payButton": "Pay now",
-  "nothingFound": "Nothing found!"
+  "nothingFound": "Nothing found!",
+  "price": "Price:"
 }

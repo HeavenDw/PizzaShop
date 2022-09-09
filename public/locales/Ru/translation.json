@@ -29,5 +29,6 @@
   "orderPrice": "Сумма заказа",
   "backButton": "Вернуться назад",
   "payButton": "Оплатить сейчас",
-  "nothingFound": "Ничего не найдено!"
+  "nothingFound": "Ничего не найдено!",
+  "price": "Цена:"
 }

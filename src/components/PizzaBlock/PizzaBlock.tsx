@@ -8,7 +8,7 @@ import { addItemToCart } from '../../redux/slices/cartSlice';
 
 import styles from './PizzaBlock.module.scss';
 
-type TypeItem = {
+export type TypeItem = {
   id: number;
   name: string;
 };
