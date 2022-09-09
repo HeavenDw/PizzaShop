@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ICartItem } from '../../@types/cartSliceTypes';
@@ -21,16 +22,18 @@ type PizzaBlockProps = {
   price: number;
 };
 
-const typesList: TypeItem[] = [
-  { id: 0, name: 'Тонкое' },
-  { id: 1, name: 'Традиционное' },
-];
-
 const PizzaBlock: FC<PizzaBlockProps> = ({ id, imageUrl, title, type, size, price }) => {
   const dispatch = useDispatch();
   const cartItem = useAppSelector((state) =>
     state.cart.items.find((item: ICartItem) => item.id === id),
   );
+  const { t } = useTranslation();
+
+  const typesList: TypeItem[] = [
+    { id: 0, name: t('typesList0') },
+    { id: 1, name: t('typesList1') },
+  ];
+
   const addToCart = () => {
     dispatch(
       addItemToCart({
@@ -53,8 +56,12 @@ const PizzaBlock: FC<PizzaBlockProps> = ({ id, imageUrl, title, type, size, pric
         <h4 className={styles.title}>{title}</h4>
       </Link>
       <div className={styles.selector}>
-        <div>{typesList[type].name} тесто</div>
-        <div>Размер пиццы: {size} см.</div>
+        <div>
+          {typesList[type].name} {t('dough')}
+        </div>
+        <div>
+          {t('pizzaSize')}: {size} {t('pizzaSizeCm')}
+        </div>
       </div>
       <div className={styles.bottom}>
         <div className={styles.price}>{price} ₽</div>
@@ -70,7 +77,7 @@ const PizzaBlock: FC<PizzaBlockProps> = ({ id, imageUrl, title, type, size, pric
               fill="white"
             />
           </svg>
-          <span>Добавить</span>
+          <span>{t('addButton')}</span>
           {count > 0 && <i>{count}</i>}
         </button>
       </div>

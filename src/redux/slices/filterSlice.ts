@@ -1,11 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import Cookies from 'js-cookie';
 import { IFilterSlice, IFilterSliceSortType } from '../../@types/filterSliceTypes';
 
 const initialState: IFilterSlice = {
-  sortType: { name: 'популярности', sort: 'rating' },
+  sortType: { name: 'sort', sort: 'rating' },
   categoryId: 0,
   searchValue: '',
   currentPage: 1,
+  currentLanguage: Cookies.get('i18next'),
 };
 
 export const filterSlice = createSlice({
@@ -24,8 +26,11 @@ export const filterSlice = createSlice({
     setCurrentPage(state, action: PayloadAction<number>) {
       state.currentPage = action.payload;
     },
+    setCurrentLanguage(state, action: PayloadAction<string>) {
+      state.currentLanguage = action.payload;
+    },
   },
 });
 
 export default filterSlice.reducer;
-export const { setSortType, setCategoryId, setSearchValue, setCurrentPage } = filterSlice.actions;
+export const { setSortType, setCategoryId, setSearchValue, setCurrentPage, setCurrentLanguage } = filterSlice.actions;

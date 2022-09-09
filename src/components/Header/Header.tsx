@@ -2,6 +2,7 @@ import React, { FC, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
 import CartButton from '../CartButton/CartButton';
+import Languages from '../Languages/Languages';
 
 import Logo from '../Logo/Logo';
 import Search from '../Search/Search';
@@ -29,6 +30,7 @@ const Header: FC = () => {
       <div className={styles.container}>
         <Logo />
         {location.pathname === '/' && <Search />}
+        <Languages />
         <CartButton />
       </div>
     </header>

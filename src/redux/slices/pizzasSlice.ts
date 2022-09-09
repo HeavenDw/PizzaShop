@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import { EPizzaSliceStatus, IPizzaBlock, IPizzaSliceParams, IPizzasSlice } from '../../@types/pizzaSliceTypes';
 
 const initialState: IPizzasSlice = {
@@ -9,7 +10,8 @@ const initialState: IPizzasSlice = {
 
 export const fetchPizzas = createAsyncThunk<IPizzaBlock[], IPizzaSliceParams>('pizzas/fetchPizzas', async (params) => {
   const { sortType, categoryId, searchValue, currentPage } = params;
-  const response = await axios.get<IPizzaBlock[]>('https://62c007ccd40d6ec55cc99bf2.mockapi.io/Items', {
+  const language = Cookies.get('i18next');
+  const response = await axios.get<IPizzaBlock[]>(`https://62c007ccd40d6ec55cc99bf2.mockapi.io/Items${language}`, {
     params: {
       page: currentPage,
       limit: 4,

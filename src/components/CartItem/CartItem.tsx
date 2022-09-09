@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from '../../hooks';
 import { addItemToCart, minusCartItem, removeCartItem } from '../../redux/slices/cartSlice';
 
@@ -16,6 +17,8 @@ type CartItemProps = {
 
 const CartItem: FC<CartItemProps> = ({ id, title, type, size, imageUrl, price, count }) => {
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
+
   const minusItem = () => {
     dispatch(minusCartItem(id));
   };
@@ -35,7 +38,7 @@ const CartItem: FC<CartItemProps> = ({ id, title, type, size, imageUrl, price, c
         <div className={styles.info}>
           <h3>{title}</h3>
           <p>
-            {type} тесто, {size} см.
+            {type} {t('dough')}, {size} {t('pizzaSizeCm')}
           </p>
         </div>
       </div>

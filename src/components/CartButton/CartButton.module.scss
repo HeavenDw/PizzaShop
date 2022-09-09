@@ -2,8 +2,8 @@
 
 .button {
   position: fixed;
-  right: 10px;
-  bottom: 10px;
+  right: 5%;
+  bottom: 10%;
   background-color: $orange;
   border-radius: 30px;
   min-width: 100px;
@@ -16,6 +16,10 @@
   line-height: 23px;
   padding: 12px 25px;
   box-shadow: 0px 0px 8px 0px rgba(34, 60, 80, 0.5);
+  @media (max-width: 767px) {
+    right: 10px;
+    bottom: 10px;
+  }
   &,
   span {
     color: #fff;

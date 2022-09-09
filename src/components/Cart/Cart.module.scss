@@ -154,12 +154,14 @@
 
 .emptyCart {
   margin: 0 auto;
-  width: 560px;
+  max-width: 560px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 
   h2 {
     font-size: 32px;
-    margin-bottom: 10px;
   }
 
   p {
@@ -174,10 +176,13 @@
     top: 2px;
   }
 
-  img {
-    display: block;
-    width: 300px;
-    margin: 45px auto 60px;
+  .image {
+    max-width: 100%;
+    img {
+      max-width: 100%;
+      width: 100%;
+      height: auto;
+    }
   }
 
   a {

@@ -7,10 +7,12 @@ import { useAppSelector, useAppDispatch } from '../../hooks';
 
 import styles from './Cart.module.scss';
 import emptyCartImg from '../../assets/img/empty-cart.png';
+import { useTranslation } from 'react-i18next';
 
 const Cart: FC = () => {
   const { items, totalCount, totalPrice } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
 
   const onClickClear = () => {
     dispatch(clearCartItems());
@@ -20,13 +22,12 @@ const Cart: FC = () => {
     return (
       <div className={styles.emptyCart}>
         <h2>
-          Корзина пустая <span>😕</span>
+          {t('emptyCart')} <span>😕</span>
         </h2>
-        <p>
-          Вероятней всего, вы не заказывали ещё пиццу. Для того, чтобы заказать пиццу, перейди на
-          главную страницу.
-        </p>
-        <img src={emptyCartImg} alt="" />
+        <p>{t('emptyCartMessage')}</p>
+        <div className={styles.image}>
+          <img src={emptyCartImg} alt="" />
+        </div>
         <Link to="/" className={`button button--outline button--add ${styles.backBtn}`}>
           <svg
             width="8"
@@ -43,7 +44,7 @@ const Cart: FC = () => {
             />
           </svg>
 
-          <span>Вернуться назад</span>
+          <span>{t('backButton')}</span>
         </Link>
       </div>
     );
@@ -82,7 +83,7 @@ const Cart: FC = () => {
                 strokeLinejoin="round"
               />
             </svg>
-            Корзина
+            {t('cart')}
           </h2>
           <button onClick={onClickClear} className={styles.clear}>
             <svg
@@ -121,7 +122,7 @@ const Cart: FC = () => {
               />
             </svg>
 
-            <span>Очистить корзину</span>
+            <span>{t('clearCart')}</span>
           </button>
         </div>
         <div>
@@ -132,10 +133,10 @@ const Cart: FC = () => {
         <div className={styles.bottom}>
           <div className={styles.details}>
             <span>
-              Всего пицц: <b>{totalCount} шт.</b>
+              {t('totalPizzas')}: <b>{totalCount} шт.</b>
             </span>
             <span>
-              Сумма заказа: <b>{totalPrice} ₽</b>
+              {t('orderPrice')}: <b>{totalPrice} ₽</b>
             </span>
           </div>
           <div className={styles.buttons}>
@@ -155,10 +156,10 @@ const Cart: FC = () => {
                 />
               </svg>
 
-              <span>Вернуться назад</span>
+              <span>{t('backButton')}</span>
             </Link>
             <button className={`button ${styles.payBtn}`}>
-              <span>Оплатить сейчас</span>
+              <span>{t('payButton')}</span>
             </button>
           </div>
         </div>

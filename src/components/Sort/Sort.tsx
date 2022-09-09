@@ -1,4 +1,6 @@
+import Cookies from 'js-cookie';
 import React, { FC, useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useAppSelector } from '../../hooks';
 import { setSortType } from '../../redux/slices/filterSlice';
@@ -8,10 +10,12 @@ import styles from './Sort.module.scss';
 const Sort: FC = () => {
   const currentSort = useAppSelector((state) => state.filter.sortType);
   const dispatch = useDispatch();
+  const { t } = useTranslation();
+
   const sortList = [
-    { name: 'популярности', sort: 'rating' },
-    { name: 'цене', sort: 'price' },
-    { name: 'алфавиту', sort: 'title' },
+    { name: t('sortList0'), sort: 'rating' },
+    { name: t('sortList1'), sort: 'price' },
+    { name: t('sortList2'), sort: 'title' },
   ];
   const [open, setOpen] = useState(false);
   const sortRef = useRef<HTMLDivElement>(null);
@@ -20,6 +24,9 @@ const Sort: FC = () => {
     dispatch(setSortType(sortList[sortIndex]));
     setOpen(false);
   };
+  useEffect(() => {
+    dispatch(setSortType({ name: t('sortList0'), sort: 'rating' }));
+  }, [Cookies.get('i18next')]);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -47,7 +54,7 @@ const Sort: FC = () => {
             fill="#2C2C2C"
           />
         </svg>
-        <p>Сортировка по:</p>
+        <p>{t('sortBy')}:</p>
         <span onClick={() => setOpen(!open)}>{currentSort.name}</span>
       </div>
       {open && (

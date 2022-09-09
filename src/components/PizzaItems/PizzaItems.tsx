@@ -11,7 +11,7 @@ import styles from './PizzaItems.module.scss';
 
 const PizzaItems: FC = () => {
   const { pizzasList, status } = useAppSelector((state) => state.pizzas);
-  const { sortType, categoryId, searchValue, currentPage } = useAppSelector(
+  const { sortType, categoryId, searchValue, currentPage, currentLanguage } = useAppSelector(
     (state) => state.filter,
   );
   const dispatch = useAppDispatch();
@@ -20,7 +20,7 @@ const PizzaItems: FC = () => {
     dispatch(fetchPizzas({ sortType, categoryId, searchValue, currentPage }));
 
     window.scrollTo(0, 0);
-  }, [sortType, categoryId, searchValue, currentPage]);
+  }, [sortType, categoryId, searchValue, currentPage, currentLanguage]);
 
   if (status === EPizzaSliceStatus.Error) {
     return <div>{status}</div>;

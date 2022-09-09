@@ -1,5 +1,6 @@
 import debounce from 'lodash.debounce';
 import React, { ChangeEvent, FC, useCallback, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { setSearchValue } from '../../redux/slices/filterSlice';
 
@@ -8,6 +9,7 @@ import styles from './Search.module.scss';
 const Search: FC = () => {
   const [inputValue, setInputValue] = useState('');
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const updateSearchValue = useCallback(
     debounce((value) => {
@@ -27,7 +29,7 @@ const Search: FC = () => {
       value={inputValue}
       onChange={onChangeInput}
       type="text"
-      placeholder="Поиск пиццы..."
+      placeholder={t('search')}
     />
   );
 };

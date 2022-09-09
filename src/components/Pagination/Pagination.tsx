@@ -9,8 +9,6 @@ type PaginationProps = {
 };
 
 const Pagination: FC<PaginationProps> = ({ currentPage, pageCount }) => {
-  console.log(pageCount);
-
   const pageList = Array.from(Array(pageCount).keys()).map((page) => page + 1);
   const dispatch = useAppDispatch();
 
