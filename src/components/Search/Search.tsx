@@ -1,5 +1,5 @@
 import debounce from 'lodash.debounce';
-import React, { ChangeEvent, FC, useCallback, useState } from 'react';
+import React, { ChangeEvent, FC, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { setSearchValue } from '../../redux/slices/filterSlice';
@@ -10,6 +10,10 @@ const Search: FC = () => {
   const [inputValue, setInputValue] = useState('');
   const dispatch = useDispatch();
   const { t } = useTranslation();
+
+  useEffect(() => {
+    dispatch(setSearchValue(''));
+  }, []);
 
   const updateSearchValue = useCallback(
     debounce((value) => {
