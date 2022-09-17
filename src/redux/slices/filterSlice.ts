@@ -7,7 +7,7 @@ const initialState: IFilterSlice = {
   categoryId: 0,
   searchValue: '',
   currentPage: 1,
-  currentLanguage: Cookies.get('i18next'),
+  currentLanguage: Cookies.get('i18next') || 'En',
 };
 
 export const filterSlice = createSlice({

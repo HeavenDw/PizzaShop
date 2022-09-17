@@ -17,7 +17,7 @@ const PizzaItems: FC = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchPizzas({ sortType, categoryId, searchValue, currentPage }));
+    dispatch(fetchPizzas({ sortType, categoryId, searchValue, currentPage, currentLanguage }));
 
     window.scrollTo(0, 0);
   }, [sortType, categoryId, searchValue, currentPage, currentLanguage]);

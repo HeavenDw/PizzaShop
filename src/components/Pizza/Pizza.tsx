@@ -15,6 +15,7 @@ const Pizza: FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { pizza, status } = useAppSelector((state) => state.pizzaItem);
+  const currentLanguage = useAppSelector((state) => state.filter.currentLanguage);
   const cartItem = useAppSelector((state) =>
     state.cart.items.find((item: ICartItem) => item.id === id),
   );
@@ -41,7 +42,9 @@ const Pizza: FC = () => {
   const count = cartItem ? cartItem.count : 0;
 
   useEffect(() => {
-    dispatch(fetchPizza(id));
+    if (id) {
+      dispatch(fetchPizza({ id, currentLanguage }));
+    }
   }, []);
 
   if (status === EPizzaSliceStatus.Error) {

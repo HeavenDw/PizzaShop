@@ -27,4 +27,5 @@ export interface IPizzaSliceParams {
   categoryId: number;
   searchValue: string;
   currentPage: number;
+  currentLanguage: string;
 }

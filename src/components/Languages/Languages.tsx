@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from '../../hooks';
@@ -11,7 +10,7 @@ const Languages: FC = () => {
   const { t, i18n } = useTranslation();
   const dispatch = useAppDispatch();
 
-  const setLanguage = (lang) => {
+  const setLanguage = (lang: string): void => {
     i18n.changeLanguage(lang);
     dispatch(setCurrentLanguage(lang));
   };

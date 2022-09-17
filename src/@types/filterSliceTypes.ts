@@ -8,5 +8,5 @@ export interface IFilterSlice {
   categoryId: number;
   searchValue: string;
   currentPage: number;
-  currentLanguage: string | undefined;
+  currentLanguage: string;
 }

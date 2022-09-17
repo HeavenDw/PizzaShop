@@ -14,3 +14,8 @@ export interface IPizzaItemSliceBlock {
   category: number;
   rating: number;
 }
+
+export interface IPizzaItemSliceArgs {
+  id: string
+  currentLanguage: string
+}
